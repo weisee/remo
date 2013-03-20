@@ -1,0 +1,20 @@
+{
+  "name": "remo",
+  "version": "0.0.0",
+  "description": "Another RESTful API requests handler. For express/mongoose based applications.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/oct8cat/remo"
+  },
+  "keywords": [
+    "rest",
+    "api"
+  ],
+  "author": "Tako Neko <oct8cat@gmail.com>",
+  "license": "BSD",
+  "gitHead": "a63e91e076b329141e85ab15261149fc89f4a149"
+}
