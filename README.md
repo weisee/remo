@@ -5,10 +5,10 @@ Install
 Usage
 =====
 First of all, you need to define your [Mongoose models](http://mongoosejs.com/docs/models.html).
-You don't need to pass them to `remo`, just make it available through `mongoose.model()`.
+You don't need to pass them to `remo`, just make them available through `mongoose.model()`.
 
-Then, serve your application
-```javascript
+Then, serve your application:
+```js
 var express = require('express')
   , models = require('./models') // <- here your models are defined, ok?
   , http = requrie('http')
@@ -41,13 +41,13 @@ Done, here's the API:
 Also
 ====
 You can pass existing mongoose connection rather than open a new one:
-```javascript
+```js
 var mongoose = require('mongoose').connect('mongodb://localhost/test')
 remo.serve(app, {mongoose: mongoose})
 ```
 
 You can enable debug mode by pass `debug: true` option:
-```javascript
+```js
 remo.serve(app, {mongoose: mongoose, debug: true})
 ```
 
@@ -58,7 +58,7 @@ By default, `remo` converts entity name from URL to "uppercase-first" form, i.e.
 * `MyThing` -> `MyThing`
 
 You can pass your own converter in `aliasToName` option, like so:
-```javascript
+```js
 function myAliasToName(alias) {
   return alias.strToUpper()
 }
