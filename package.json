@@ -5,12 +5,15 @@
   "main": "index.js",
   "dependencies": {
     "mongoose": "*",
-    "underscore": "*",
+    "underscore": "*"
+  },
+  "devDependencies": {
     "express": "*",
+    "mocha": "*",
     "should": "*"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "node_modules/mocha/bin/mocha"
   },
   "repository": {
     "type": "git",
