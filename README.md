@@ -33,29 +33,37 @@ http.createServer(app.listen(app.get('port')), function() {
 Done, here's the API:
 
 * `GET http://localhost/api/thing` - list `thing`s
+* `GET http://localhost/api/thing/count` - count `thing`s
 * `GET http://localhost/api/thing/123` - get `thing` (id = 123)
 * `POST http://localhost/api/thing` - create `thing`
 * `PUT http://localhost/api/thing/123` - update `thing` (id = 123)
 * `DELETE http://localhost/api/thing/123` - delete `thing` (id = 123)
 
-Also
+API
 ====
-You can pass existing mongoose connection rather than open a new one:
-```js
-var mongoose = require('mongoose').connect('mongodb://localhost/test')
-remo.serve(app, {mongoose: mongoose})
-```
+Remo provides just a single public method (serve)[lib/remo.js#L37]. Arguments are:
 
-You can enable debug mode by pass `debug: true` option:
-```js
-remo.serve(app, {mongoose: mongoose, debug: true})
-```
+* `app` - Express application instance.
+* `_options` - Serving options hash.
 
-By default, `remo` converts entity name from URL to "uppercase-first" form, i.e.:
+Options
+-------
 
-* `mything` -> `Mything`
-* `my_thing` -> `My_thing`
-* `MyThing` -> `MyThing`
+* `url` - URL prefix for a REST requests. Defaults to '/remo'.
+
+* `debug` - Debug mode state. Defaults to false.
+
+* `mongoose` - Existing Mongoose connection reference. If empty, the module will try to open connection using `mongooseUri`.
+
+* `mongooseUri` - Mongoose connection URI. Will be ignored if 'mongoose' option is set.
+
+* `countAction` - Url suffix for COUNT action. Defaults to 'count'. Because of using the same URL pattern as for GET action (`/:alias/:id`) the COUNT action may blocks getting an entity with ID = 'count' (kekeke). Override this option with something like '_count' or '__count' (or even '___count'!) if so. Then COUNT url will looks like '/thing/_count'.
+
+* `aliasToName` - By default, remo converts entity name from URL to "uppercase-first" form:
+
+  * mything -> Mything
+  * my_thing -> My_thing
+  * MyThing -> MyThing
 
 You can pass your own converter in `aliasToName` option, like so:
 ```js
@@ -63,5 +71,22 @@ function myAliasToName(alias) {
   return alias.strToUpper()
 }
 remo.serve(app, {mongoose: mongoose, aliasToName: myAliasToName})
+```
 
+* `callbacks` - A hash of callback functions for actions. Keys of the hash are model names.
+Values are hashes with action names as keys and callback functions as values (I don't understand it too). A context of each callback is document instance. Example:
+```js
+var callbacks = {
+  'Thing': {
+    'create': function() {
+      console.log('Thing #' + this._id + ' created')
+    }
+  },
+  'OtherThing': {
+    'update': function() {
+      console.log('OtherThing #' + this._id + ' updated')
+    }
+  },
+}
+}
 ```
