@@ -41,7 +41,7 @@ Done, here's the API:
 
 API
 ====
-Remo provides just a single public method (serve)[lib/remo.js#L37]. Arguments are:
+Remo provides just a single public method [serve](lib/remo.js#L37). Arguments are:
 
 * `app` - Express application instance.
 * `_options` - Serving options hash.
@@ -75,6 +75,7 @@ remo.serve(app, {mongoose: mongoose, aliasToName: myAliasToName})
 
 * `callbacks` - A hash of callback functions for actions. Keys of the hash are model names.
 Values are hashes with action names as keys and callback functions as values (I don't understand it too). A context of each callback is document instance. Example:
+
 ```js
 var callbacks = {
   'Thing': {
@@ -87,6 +88,5 @@ var callbacks = {
       console.log('OtherThing #' + this._id + ' updated')
     }
   },
-}
 }
 ```
