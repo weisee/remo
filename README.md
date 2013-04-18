@@ -2,12 +2,15 @@ Install
 =======
 `$ npm i remo`
 
+
 Usage
 =====
+
 First of all, you need to define your [Mongoose models](http://mongoosejs.com/docs/models.html).
 You don't need to pass them to `remo`, just make them available through `mongoose.model()`.
 
 Then, serve your application:
+
 ```js
 var express = require('express')
   , models = require('./models') // <- here your models are defined, ok?
@@ -32,19 +35,22 @@ http.createServer(app.listen(app.get('port')), function() {
 
 Done, here's the API:
 
-* `GET http://localhost/api/thing` - list `thing`s
-* `GET http://localhost/api/thing/count` - count `thing`s
-* `GET http://localhost/api/thing/123` - get `thing` (id = 123)
-* `POST http://localhost/api/thing` - create `thing`
-* `PUT http://localhost/api/thing/123` - update `thing` (id = 123)
-* `DELETE http://localhost/api/thing/123` - delete `thing` (id = 123)
+* `GET http://localhost/api/thing` - list **thing**s
+* `GET http://localhost/api/thing/count` - count **thing**s
+* `GET http://localhost/api/thing/123` - get **thing** (id = 123)
+* `POST http://localhost/api/thing` - create **thing**
+* `PUT http://localhost/api/thing/123` - update **thing** (id = 123)
+* `DELETE http://localhost/api/thing/123` - delete **thing** (id = 123)
+
 
 API
 ===
-Remo provides just a single public method [serve](lib/remo.js#L37). Arguments are:
+
+Remo provides just a single public method [serve](lib/remo.js#L46). Arguments are:
 
 * `app` - Express application instance.
 * `_options` - Serving options hash.
+
 
 Options
 -------
@@ -66,6 +72,7 @@ Options
   * MyThing -> MyThing
 
 You can pass your own converter in `aliasToName` option, like so:
+
 ```js
 function myAliasToName(alias) {
   return alias.strToUpper()
@@ -91,13 +98,12 @@ var callbacks = {
 }
 ```
 
+
 Actions
 -------
 
-###LIST###
-
-Retrieve an entities list.
-URL: `GET /:alias`
+### LIST ###
+Retrieve an entities list. URL: `GET /:alias`.
 
 ```
 req.params:
@@ -111,10 +117,8 @@ req.query:
 ```
 
 
-###COUNT###
-
-Retrieve an entities count.
-URL: `GET /:alias/count` (Suffix is overrideable, see `options.countAction`)
+### COUNT ###
+Retrieve an entities count. URL: `GET /:alias/count` (Suffix is overrideable, see `options.countAction`).
 
 ```
 req.params:
@@ -124,10 +128,8 @@ req.query:
 ```
 
 
-###GET###
-
-Retrieve an entity by ID.
-URL: `GET /:alias/:id`
+### GET ###
+Retrieve an entity by ID. URL: `GET /:alias/:id`.
 
 ```
 req.params:
@@ -138,10 +140,8 @@ req.query:
 ```
 
 
-###CREATE###
-
-Create an entity
-URL: `POST /:alias`
+### CREATE ###
+Create an entity. URL: `POST /:alias`.
 
 ```
 req.params:
@@ -150,10 +150,8 @@ req.body: Attributes hash
 ```
 
 
-###UPDATE###
-
-Retrieve an entity by ID.
-URL: `PUT /:alias/:id`
+### UPDATE ###
+Retrieve an entity by ID. URL: `PUT /:alias/:id`.
 
 ```
 req.params:
@@ -163,10 +161,8 @@ req.body: Attributes hash
 ```
 
 
-###DELETE###
-
-Delete an entity by ID.
-URL: `PUT /:alias/:id`
+### DELETE ###
+Delete an entity by ID. URL: `DELETE /:alias/:id`.
 
 ```
 req.params:
