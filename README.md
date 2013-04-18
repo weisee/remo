@@ -40,7 +40,7 @@ Done, here's the API:
 * `DELETE http://localhost/api/thing/123` - delete `thing` (id = 123)
 
 API
-====
+===
 Remo provides just a single public method [serve](lib/remo.js#L37). Arguments are:
 
 * `app` - Express application instance.
@@ -89,4 +89,87 @@ var callbacks = {
     }
   },
 }
+```
+
+Actions
+-------
+
+###LIST###
+
+Retrieve an entities list.
+URL: `GET /:alias`
+
+```
+req.params:
+  + alias: Entity name
+req.query:
+  + find (where,q) : Search condition
+  + limit (lim)    : Limit value
+  + populate (pop) : Population expression
+  + skip           : How much results should be skipped
+  + sort           : Sort expression
+```
+
+
+###COUNT###
+
+Retrieve an entities count.
+URL: `GET /:alias/count` (Suffix is overrideable, see `options.countAction`)
+
+```
+req.params:
+  + alias: Entity name
+req.query:
+  + find (where,q) : Search condition
+```
+
+
+###GET###
+
+Retrieve an entity by ID.
+URL: `GET /:alias/:id`
+
+```
+req.params:
+  + alias: Entity name
+  + id:    Entity ID
+req.query:
+  + populate: Population expression
+```
+
+
+###CREATE###
+
+Create an entity
+URL: `POST /:alias`
+
+```
+req.params:
+  + alias: Entity name
+req.body: Attributes hash
+```
+
+
+###UPDATE###
+
+Retrieve an entity by ID.
+URL: `PUT /:alias/:id`
+
+```
+req.params:
+  + alias: Entity name
+  + id:    Entity ID
+req.body: Attributes hash
+```
+
+
+###DELETE###
+
+Delete an entity by ID.
+URL: `PUT /:alias/:id`
+
+```
+req.params:
+  + alias: Entity name
+  + id:    Entity ID
 ```
