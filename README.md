@@ -13,7 +13,7 @@ Then, serve your application:
 
 ```js
 var express = require('express')
-  , models = require('./models') // <- here your models are defined, ok?
+  , models = require('./models') // <- here your models are defined.
   , http = requrie('http')
   , remo = require('remo')
   , app = express()
