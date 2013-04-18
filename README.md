@@ -7,14 +7,14 @@ Usage
 =====
 
 First of all, you need to define your [Mongoose models](http://mongoosejs.com/docs/models.html).
-You don't need to pass them to `remo`, just make them available through `mongoose.model()`.
+You don't need to pass them to Remo, just make them available through `mongoose.model()`.
 
 Then, serve your application:
 
 ```js
 var express = require('express')
   , models = require('./models') // <- here your models are defined.
-  , http = requrie('http')
+  , http = require('http')
   , remo = require('remo')
   , app = express()
 
@@ -151,7 +151,7 @@ req.body: Attributes hash
 
 
 ### UPDATE ###
-Retrieve an entity by ID. URL: `PUT /:alias/:id`.
+Update an entity by ID. URL: `PUT /:alias/:id`.
 
 ```
 req.params:
