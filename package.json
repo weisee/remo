@@ -1,6 +1,6 @@
 {
   "name": "remo",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "description": "Another RESTful API requests handler. For express/mongoose based applications.",
   "main": "index.js",
   "dependencies": {
