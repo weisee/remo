@@ -21,7 +21,9 @@
   },
   "keywords": [
     "rest",
-    "api"
+    "api",
+    "express",
+    "mongoose"
   ],
   "author": "Tako Neko <oct8cat@gmail.com>",
   "license": "BSD",
